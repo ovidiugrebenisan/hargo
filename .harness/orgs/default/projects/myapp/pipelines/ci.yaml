@@ -1,0 +1,40 @@
+pipeline:
+  name: ci
+  identifier: ci
+  projectIdentifier: myapp
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: github
+        repoName: hargo
+        build: <+input>
+  stages:
+    - stage:
+        name: build go
+        identifier: build_go
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: true
+            override: true
+          buildIntelligence:
+            enabled: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Docker
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: build
+                  identifier: build
+                  spec:
+                    shell: Bash
+                    command: go build .
