@@ -22,12 +22,6 @@ pipeline:
             override: true
           buildIntelligence:
             enabled: true
-          platform:
-            os: Linux
-            arch: Amd64
-          runtime:
-            type: Docker
-            spec: {}
           execution:
             steps:
               - step:
@@ -35,5 +29,15 @@ pipeline:
                   name: go build
                   identifier: go_build
                   spec:
+                    connectorRef: account.harnessImage
+                    image: hargo
                     shell: Bash
                     command: go build
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: ci
+              namespace: harness-delegate-ng
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              os: Linux
