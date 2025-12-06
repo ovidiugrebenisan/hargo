@@ -36,4 +36,4 @@ pipeline:
                   identifier: go_build
                   spec:
                     shell: Bash
-                    command: go build .
+                    command: go build
