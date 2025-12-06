@@ -29,8 +29,8 @@ pipeline:
                   name: go build
                   identifier: go_build
                   spec:
-                    connectorRef: account.harnessImage
-                    image: hargo
+                    connectorRef: dockerhub
+                    image: golang:tip-alpine3.23
                     shell: Bash
                     command: go build
           infrastructure:
