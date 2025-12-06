@@ -31,7 +31,7 @@ pipeline:
                   spec:
                     connectorRef: dockerhub
                     image: golang:tip-alpine3.23
-                    shell: Bash
+                    shell: Sh
                     command: go build
           infrastructure:
             type: KubernetesDirect
